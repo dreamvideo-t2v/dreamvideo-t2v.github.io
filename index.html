@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DreamVideo</title>
+
+	<link rel="stylesheet" href="bootstrap-5.3.2-dist/css/bootstrap.min.css" /> 
+	<script src="bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="https://gw.alicdn.com/imgextra/i3/O1CN01n9wUIv26XN415nWwN_!!6000000007671-0-tps-703-704.jpg">
+	<link href="css/templatemo-style.css" rel="stylesheet" />
+	<link href="css/new-style.css" rel="stylesheet" />
+	<link href="css/two_style.css" rel="stylesheet" />
+
+</head>
+
+<body> 
+
+	<div class="container">
+		<div class="placeholder">
+			<div class="placeholder-content">
+				<img src="https://gw.alicdn.com/imgextra/i3/O1CN01Dko8nq1a3XZ41bOe8_!!6000000003274-2-tps-60-60.png" alt="Logo" class="tm-site-logo" /> 
+				<div class="tm-site-text-box">
+					<h1 class="tm-site-title">DreamVideo</h1>
+					<h6 class="tm-site-description"> Customized video generation with any subject and any motion.</h6>	
+				</div>
+			</div>
+		</div>
+		
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">DreamVideo: Composing Your Dream Videos with Customized Subject and Motion</h2>
+				<p class="col-12 text-center author-section">
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=grn93WcAAAAJ">Yujie Wei<sup>1</sup></a>, 
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=ZO3OQ-8AAAAJ">Shiwei Zhang<sup>2</sup></a>,
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=q9refl4AAAAJ">Zhiwu Qing<sup>3</sup></a>,
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=jQ3bFDMAAAAJ">Hangjie Yuan<sup>4</sup></a>,
+					<a class="author-section-a" href="#">Zhiheng Liu<sup>2</sup></a>,
+					<br/>
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=8zksQb4AAAAJ">Yu Liu<sup>2</sup></a>,
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=16RDSEUAAAAJ">Yingya Zhang<sup>2</sup></a>,
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=64zxhRUAAAAJ">Jingren Zhou<sup>2</sup></a>,
+					<a class="author-section-a" href="https://scholar.google.com/citations?user=RYfSzKwAAAAJ">Hongming Shan<sup>1</sup></a>
+				</p>
+				
+				<p class="col-12 text-center affiliation-section">
+					<a class="author-section-a"><sup>1</sup>Fudan University</a>, 
+					<a class="author-section-a"><sup>2</sup>Alibaba Group</a>,
+					<br/>
+					<a class="author-section-a"><sup>3</sup>Huazhong University of Science and Technology</a>,
+					<a class="author-section-a"><sup>4</sup>Zhejiang University</a>
+				</p>
+
+				<p class="col-12 text-center abstract-section" style="word-break:break-all;word-wrap:break-word">
+					Customized generation using diffusion models has made impressive progress in image generation, but remains unsatisfactory in the challenging video generation task, as it requires the controllability of both subjects and motions.
+					To that end, we present DreamVideo, a novel approach to generating personalized videos from a few static images of the desired subject and a few videos of target motion.
+					DreamVideo decouples this task into two stages, subject learning and motion learning, by leveraging a pre-trained video diffusion model.
+					The subject learning aims to accurately capture the fine appearance of the subject from provided images, which is achieved by combining textual inversion and fine-tuning of our carefully designed identity adapter.
+					In motion learning, we architect a motion adapter and fine-tune it on the given videos to effectively model the target motion pattern.
+					Combining these two lightweight and efficient adapters allows for flexible customization of any subject with any motion.
+					Extensive experimental results demonstrate the superior performance of our DreamVideo over the state-of-the-art methods for customized video generation.
+					The source code and model will be made publicly available.
+				</p>
+				
+			</header>
+			
+			<div class="tm-paging-links" style="margin-bottom: 1rem;">
+				<nav>
+					<ul>
+						<li class="tm-paging-item"><a class="sw_style_link active" href="#">Paper</a></li>
+						<li class="tm-paging-item"><a class="sw_style_link" href="https://github.com/damo-vilab/i2vgen-xl">Code</a></li>
+						<li class="tm-paging-item"><a class="sw_style_link" href="#">Models</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<div class=" font-serif rw-r-container">
+				<div class="text-2xl lg:text-4xl leading-none pb-2 text-center">
+					Video Customization with <i>both</i> Subjects and Motions 
+				</div>
+				<div class="text-base lg:text-lg pb-2 text-center ">
+					You can generate videos flexibly with any subject and any motion.
+				</div>
+				
+				<!-- Gallery row 1 -->
+				<div class="row tm-gallery subject-container">
+					<div id="tm-gallery-page-pizza" class="tm-gallery-page subject">
+
+						<article class="col-md-4 tm-gallery-item">
+							<figure>
+								<div class="" style="display: flex">
+									<img src="https://img.alicdn.com/imgextra/i3/O1CN01OmiF5i1oZVtSb2bUm_!!6000000005239-2-tps-1214-1214.png" />
+								</div>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<figure>
+								<div class="subject_img" style="display: flex">
+									<img src="https://img.alicdn.com/imgextra/i2/O1CN01SbeTWK25vMFdpqnsM_!!6000000007588-0-tps-1280-1280.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i2/O1CN01DCwGm91zI4aMfeUpA_!!6000000006690-0-tps-1441-1441.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i3/O1CN01zWjkLQ1PLtivpOOy5_!!6000000001825-0-tps-1280-1280.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i4/O1CN01pNKqAg1PLRKH7xeWi_!!6000000001824-0-tps-1277-1277.jpg" />
+								</div>
+								
+								<figcaption>
+									<h4 class="tm-gallery-title text-center">dog</h4>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<figure>
+								<div class="subject_img" style="display: flex">
+									<img src="https://img.alicdn.com/imgextra/i3/O1CN01LixNnr1NddpxBTjHK_!!6000000001593-0-tps-2048-2048.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i1/O1CN01Mc2Bwh1niNwmFq7i5_!!6000000005123-0-tps-2048-2048.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i4/O1CN01Sv7R2A1yCHxz4RF6p_!!6000000006542-0-tps-2048-2048.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i2/O1CN01PVMLM81qpCh3DvIHv_!!6000000005544-0-tps-2048-2048.jpg" />
+								</div>
+								
+								<figcaption>
+									<h4 class="tm-gallery-title text-center">sloth</h4>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<figure>
+								<div class="subject_img" style="display: flex">
+									<img src="https://img.alicdn.com/imgextra/i3/O1CN01MEsaVK23OGOyB62jX_!!6000000007245-0-tps-1440-1440.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i2/O1CN0143KTEE21pcpZfe0Bt_!!6000000007034-0-tps-1440-1440.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i3/O1CN014KSWW61fPaluy70pO_!!6000000003999-0-tps-1440-1440.jpg" />
+									<img src="https://img.alicdn.com/imgextra/i2/O1CN01Cq7QCD26YkJSrdhyD_!!6000000007674-0-tps-1440-1440.jpg" />
+								</div>
+								
+								<figcaption>
+									<h4 class="tm-gallery-title text-center">monster</h4>
+								</figcaption>
+							</figure>
+						</article>
+					</div> 
+				</div><!-- gallery row 1 -->
+				
+				<!-- Gallery row 2 -->
+				<div class="row tm-gallery">
+					<div id="tm-gallery-page-pizza" class="tm-gallery-page video-container">
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439975168112.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a person is playing guitar”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440540938590.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a <span class="token">dog<sup>*</sup></span> is playing guitar”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439713880479.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a <span class="token">sloth<sup>*</sup></span> is playing guitar <br/> <span class="context">on the moon</span>”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440254965355.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“A <span class="token">monster<sup>*</sup></span> is playing guitar <br/> <span class="context">in the room</span>”</p>
+								</figcaption>
+							</figure>
+						</article>
+					</div> 
+				</div><!-- gallery row 2 -->
+				
+				<!-- Gallery row 3 -->
+				<div class="row tm-gallery">
+					<div id="tm-gallery-page-pizza" class="tm-gallery-page video-container ">
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440521382020.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a person is lifting weights”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440554322331.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a <span class="token">dog<sup>*</sup></span> is lifting weights”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440200533206.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a <span class="token">sloth<sup>*</sup></span> is lifting weights”</p>
+								</figcaption>
+							</figure>
+						</article>
+
+						<article class="col-md-4 tm-gallery-item">
+							<video class="video-center" muted autoplay loop>
+								<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439987532418.mp4" type="video/mp4" class="video_style">
+							</video>
+							<figure>
+								<figcaption>
+									<p class="tm-gallery-description text-center">“a <span class="token">monster<sup>*</sup></span> is lifting weights <br/> <span class="context">on the road</span>”</p>
+								</figcaption>
+							</figure>
+						</article>
+					</div> 
+				</div><!-- gallery row 3 -->
+
+				<div class="text-base lg:text-lg pb-2 text-center ">
+					Comparisons with baselines.
+				</div>
+
+				<div id="combinationCompareCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery subject-container">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page subject">
+
+									<article class="col-lg-6 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN019YbQ8k1epPTuqISgY_!!6000000003920-0-tps-780-780.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01Qye7th1u3Lm2Wo0vZ_!!6000000005981-0-tps-781-781.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01bAsWqa1xpqYhG0sT1_!!6000000006493-0-tps-780-780.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01p2Hc5F1Qp2XhiVsiq_!!6000000002024-0-tps-780-780.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">dog</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<div class="text-container">
+										+
+									</div>
+
+									<article class="col-lg-6 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439867100875.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a person is skateboarding, front view”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">AnimateDiff</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">LoRA</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+							
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440522486957.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440256125763.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440450978153.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440732435356.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+									<figure>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a dog is skateboarding, front view”</p>
+										</figcaption>
+									</figure>
+								</div> 
+							</div><!-- gallery row 3 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery subject-container">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page subject">
+
+									<article class="col-lg-6 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01VJpGsA1mhBI9fsB2h_!!6000000004985-0-tps-4396-4396.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01pqe16h1cRTYQmPqHk_!!6000000003597-0-tps-4429-4429.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01VtAJkP1wigknetC9Y_!!6000000006342-0-tps-3197-3197.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01EM5Ycw20RylgXDsEx_!!6000000006847-0-tps-4395-4395.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">cat</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<div class="text-container">
+										+
+									</div>
+
+									<article class="col-lg-6 tm-gallery-item">
+										<div class="">
+											<img src="https://img.alicdn.com/imgextra/i4/O1CN01oH6D3S1SgukOGjTka_!!6000000002277-1-tps-256-256.gif" alt="Image" class="img-fluid tm-gallery-img" />
+										</div>	
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a dog eating grass from under the snow”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 1 Method Name-->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">AnimateDiff</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">LoRA</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+							
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440490922556.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440753359501.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440248625138.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439963864719.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+									<figure>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a cat eating grass from under the <span class="context">sand</span>”</p>
+										</figcaption>
+									</figure>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery subject-container">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page subject">
+
+									<article class="col-lg-6 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01rSe2NT1QnCxQjBmip_!!6000000002020-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01lmJyOk1FQLPgvbaj8_!!6000000000481-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01BlTqCi1LjTeXeHPlF_!!6000000001335-0-tps-1920-1920.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01i1Bdsu1tbs0XmiA9G_!!6000000005921-0-tps-1280-1280.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">dog</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<div class="text-container">
+										+
+									</div>
+
+									<article class="col-lg-6 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440484198918.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a person is surfing”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 1 Method Name-->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">AnimateDiff</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">LoRA</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+							
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440753591426.mp4" type="video/mp4" class="video_style">
+										</video>	
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440241921358.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440791947641.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440774755170.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+									<figure>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a dog is surfing”</p>
+										</figcaption>
+									</figure>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+						
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery subject-container">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page subject">
+
+									<article class="col-lg-6 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01SbeTWK25vMFdpqnsM_!!6000000007588-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01DCwGm91zI4aMfeUpA_!!6000000006690-0-tps-1441-1441.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01zWjkLQ1PLtivpOOy5_!!6000000001825-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01pNKqAg1PLRKH7xeWi_!!6000000001824-0-tps-1277-1277.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">dog</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<div class="text-container">
+										+
+									</div>
+
+									<article class="col-lg-6 tm-gallery-item">
+										<div class="">
+											<img src="https://img.alicdn.com/imgextra/i2/O1CN011fi7c41fLTCvxVBi0_!!6000000003990-1-tps-256-256.gif" alt="Image" class="img-fluid tm-gallery-img" />
+										</div>	
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a car running on the road”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 1 Method Name-->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">AnimateDiff</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">LoRA</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+							
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440058720809.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440218969847.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440477142872.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440521382062.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+									<figure>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a dog running on the <span class="context">Place du Louvre</span>”</p>
+										</figcaption>
+									</figure>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#combinationCompareCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#combinationCompareCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+
+			</div>
+
+			
+			
+
+			<div class="gray_div font-serif rw-r-container" >
+				<div class="text-2xl lg:text-4xl leading-none pb-2 text-center">
+					Subject Customization
+				</div>
+
+				<div class="text-base lg:text-lg text-center ">
+					Comparisons with baselines.
+				</div>
+
+				<div id="subjectCompareCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Textual Inversion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Dreamix</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+							
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01Uug6h226PaONJVr6G_!!6000000007654-0-tps-1277-1277.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01tFYAVG25pP6TXEC8f_!!6000000007575-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01tv1kD51HdHpvM1JNH_!!6000000000780-0-tps-1484-1484.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01vtUE0J1gU0CUfAtml_!!6000000004144-0-tps-1281-1281.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">cat</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440816819798.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439935616507.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a cat eating pizza”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439975168149.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Textual Inversion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Dreamix</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01MEsaVK23OGOyB62jX_!!6000000007245-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN0143KTEE21pcpZfe0Bt_!!6000000007034-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN014KSWW61fPaluy70pO_!!6000000003999-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01Cq7QCD26YkJSrdhyD_!!6000000007674-0-tps-1440-1440.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">monster</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440219085065.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+			
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440256125794.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a monster dancing to upbeat music”</p>
+											</figcaption>
+										</figure>
+									</article>
+			
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440749803854.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Textual Inversion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Dreamix</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 4 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN010ByaQx1xJmprOX3GT_!!6000000006423-0-tps-2048-2048.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01LKdliR1bo5UXjIpKv_!!6000000003511-0-tps-2048-2048.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01ZJ42sh1ZnVlI2ZNAL_!!6000000003239-0-tps-2048-2048.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01ZJ42sh1ZnVlI2ZNAL_!!6000000003239-0-tps-2048-2048.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">wolf</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440137909557.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440276609173.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a wolf running in the forest”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440774755171.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 4 -->
+						</div>
+						
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#subjectCompareCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#subjectCompareCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+
+				<div class="text-base lg:text-lg text-center ">
+					Comparisons with Custom Diffusion.
+				</div>
+
+				<div id="subjectCompareCustomDiffusionCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Custom Diffusion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01o03ZB41YgoLrcQCFq_!!6000000003089-0-tps-1093-1093.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01fKTas41gfS6Vbg0Im_!!6000000004169-0-tps-615-615.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01NuJuWx1vjm4lmgbik_!!6000000006209-0-tps-1093-1093.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01TjB4A81yCHy30K8uk_!!6000000006542-0-tps-820-820.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">dog</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440001888037.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">S<sup>*</sup></span> dog wagging its tail”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440576978728.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">dog<sup>*</sup></span> wagging its tail”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Custom Diffusion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01VJpGsA1mhBI9fsB2h_!!6000000004985-0-tps-4396-4396.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01pqe16h1cRTYQmPqHk_!!6000000003597-0-tps-4429-4429.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01VtAJkP1wigknetC9Y_!!6000000006342-0-tps-3197-3197.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01EM5Ycw20RylgXDsEx_!!6000000006847-0-tps-4395-4395.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">cat</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440779691325.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">S<sup>*</sup></span> cat posing along the Great Wall”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440797391464.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">cat<sup>*</sup></span> posing along the Great Wall”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Subject</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Custom Diffusion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 4 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN019YbQ8k1epPTuqISgY_!!6000000003920-0-tps-780-780.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01Qye7th1u3Lm2Wo0vZ_!!6000000005981-0-tps-781-781.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01bAsWqa1xpqYhG0sT1_!!6000000006493-0-tps-780-780.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01p2Hc5F1Qp2XhiVsiq_!!6000000002024-0-tps-780-780.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">dog</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440220321483.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">S<sup>*</sup></span> dog eating pizza”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440804595453.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">dog<sup>*</sup></span> eating pizza”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 4 -->
+						</div>
+						
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#subjectCompareCustomDiffusionCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#subjectCompareCustomDiffusionCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+
+				<div class="text-base lg:text-lg pb-2 text-center ">
+					More results.
+				</div>
+				
+				<div id="subjectCustomizationMoreResultsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01y0fP161K5nj1OuDGE_!!6000000001113-0-tps-235-235.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01qDrAsu25CvplCIKoD_!!6000000007491-0-tps-726-726.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN016PYJ7g1CrPyihzbMC_!!6000000000134-0-tps-313-313.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01uLRTPy1Ip1bRqPije_!!6000000000941-0-tps-1080-1080.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">girl</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439931724231.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">girl<sup>*</sup></span> walking across the street, front view”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01ZbNWST1mKHUSsyzJf_!!6000000004935-0-tps-1280-1280.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01Eali7n26fcFrcKNan_!!6000000007689-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01JjXn7R1LFhuMC2ngU_!!6000000001270-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i1/O1CN01b8Y2ui1F7ZAtSHlZd_!!6000000000440-0-tps-1440-1440.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">duck</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440690743176.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">duck<sup>*</sup></span> running on the road”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01dGBKdk1JitvJO8J9Y_!!6000000001063-0-tps-2288-2288.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN014Ftmq71P0N6sydgw5_!!6000000001778-0-tps-2230-2230.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i2/O1CN01LyPFit1g1be1AggEt_!!6000000004082-0-tps-2447-2447.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01A6mv601fqc8lrwjvC_!!6000000004058-0-tps-2500-2500.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">tortoise</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440758751294.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a <span class="token">tortoise<sup>*</sup></span> exploring a forest”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+						
+						<div class="carousel-item">
+							<!-- Gallery row 4 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-4 tm-gallery-item">
+										<figure>
+											<div class="subject_img" style="display: flex">
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01Gv7Khj27RhqG2WXNi_!!6000000007794-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01Iphm6B1IS7ncS70nA_!!6000000000891-0-tps-1440-1440.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i4/O1CN01tv5H1R1uUN8nDgtT2_!!6000000006040-0-tps-1080-1080.jpg" />
+												<img src="https://img.alicdn.com/imgextra/i3/O1CN01X0UbY11mOrS0VuC0J_!!6000000004945-0-tps-1280-1280.jpg" />
+											</div>
+											
+											<figcaption>
+												<h4 class="tm-gallery-title text-center">sunglasses</h4>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-lg-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440058720784.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a dog wearing a <span class="token">sunglasses<sup>*</sup></span>”</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 4 -->
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#subjectCustomizationMoreResultsCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#subjectCustomizationMoreResultsCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+
+			</div>
+			
+			<div class=" font-serif rw-r-container">
+				<div class="text-2xl lg:text-4xl leading-none pb-2 text-center">
+					Motion Customization
+				</div>
+				<div class="text-base lg:text-lg text-center ">
+					Comparisons with baselines.
+				</div>
+
+				<div id="motionCompareCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Motion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Tune-A-Video</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440278954561.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a person is biking”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439947920101.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440753359541.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a bear is biking”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440241921363.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Motion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Tune-A-Video</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439860956165.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a bear walking on some rocks”</span></p>
+										</figcaption>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439955760394.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+			
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440513514434.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a cat walking on <span class="context">a field full of flowers</span>”</p>
+											</figcaption>
+										</figure>
+									</article>
+			
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440160469192.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Motion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Tune-A-Video</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 4 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440521382020.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a person is lifting weights”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440280541912.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440200649730.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a bear is lifting weights”</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439969680830.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 4 -->
+						</div>
+						
+						<div class="carousel-item">
+							<!-- Gallery row 1 Method Name -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Motion</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">ModelScopeT2V</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">Tune-A-Video</p>
+											</figcaption>
+										</figure>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">DreamVideo (ours)</p>
+											</figcaption>
+										</figure>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+
+							<!-- Gallery row 5 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-md-4 tm-gallery-item">
+										<div class="">
+											<img src="https://img.alicdn.com/imgextra/i1/O1CN01r9yeiR1irw83xSXZz_!!6000000004467-1-tps-256-256.gif" alt="Image" class="img-fluid tm-gallery-img" autoplay loop/>
+										</div>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a car running on the road”</span></p>
+										</figcaption>
+									</article>
+
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440278465031.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+			
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440254965392.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figure>
+											<figcaption>
+												<p class="tm-gallery-description text-center">“a tiger running on <span class="context">Mars</span>”</p>
+											</figcaption>
+										</figure>
+									</article>
+			
+									<article class="col-md-4 tm-gallery-item">
+										<video class="video-center cat-walking-flowers-video" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439873420492.mp4" type="video/mp4" class="video_style">
+										</video>
+									</article>
+								</div> 
+							</div><!-- gallery row 5 -->
+						</div>
+
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#motionCompareCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#motionCompareCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>	
+
+				
+				<div class="text-base lg:text-lg pb-2 text-center ">
+					More results.
+				</div>
+
+				<div id="motionMoreResultsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!-- Gallery row 1 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<div class="">
+											<img src="https://img.alicdn.com/imgextra/i1/O1CN01r9yeiR1irw83xSXZz_!!6000000004467-1-tps-256-256.gif" alt="Image" class="img-fluid tm-gallery-img" autoplay loop/>
+										</div>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a car running on the road”</span></p>
+										</figcaption>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440219085067.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a cat running on the road”</span></p>
+										</figcaption>
+									</article>
+								</div> 
+							</div><!-- gallery row 1 -->
+					  	</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 2 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<div class="">
+											<img src="https://img.alicdn.com/imgextra/i1/O1CN01kKJapM1u7vjcITZFj_!!6000000005991-1-tps-256-256.gif" alt="Image" class="img-fluid tm-gallery-img" autoplay loop/>
+										</div>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a woman riding a horse jumping over a fence”</span></p>
+										</figcaption>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/440477142876.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a tiger jumping over a fence, <span class="context">cartoon style</span>”</span></p>
+										</figcaption>
+									</article>
+								</div> 
+							</div><!-- gallery row 2 -->
+						</div>
+
+						<div class="carousel-item">
+							<!-- Gallery row 3 -->
+							<div class="row tm-gallery">
+								<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439975168112.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a person is playing guitar”</p>
+										</figcaption>
+									</article>
+
+									<article class="col-lg-3 tm-gallery-item">
+										<video class="video-center" muted autoplay loop>
+											<source src="https://cloud.video.taobao.com/play/u/null/p/1/e/6/t/1/439860956208.mp4" type="video/mp4" class="video_style">
+										</video>
+										<figcaption>
+											<p class="tm-gallery-description text-center">“a monkey is playing guitar”</span></p>
+										</figcaption>
+									</article>
+								</div> 
+							</div><!-- gallery row 3 -->
+						</div>
+
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#motionMoreResultsCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#motionMoreResultsCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>		
+
+			</div>
+
+			<div class="gray_div font-serif rw-r-container">
+				<div class="text-2xl lg:text-4xl leading-none pb-2 text-center">
+					BibTeX
+				</div>
+				<pre><code>@article{dreamvideo,<br/>	title={DreamVideo: Composing Your Dream Videos with Customized Subject and Motion},<br/>	author={Wei, Yujie and Zhang, Shiwei and Qing, Zhiwu and Yuan, Hangjie and Liu, Zhiheng and Liu, Yu and Zhang, Yingya and Zhou, Jingren and Shan, Hongming},<br/>	journal={arXiv preprint},<br/>	year={2023}<br/>}</code></pre>
+			</div>
+		</main>
+
+		<footer class="tm-footer text-center">
+
+		</footer>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			// Handle click on paging links
+			$('.tm-paging-link').click(function(e){
+				e.preventDefault();
+				var page = $(this).text().toLowerCase();
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+	</script>
+</body>
+</html>
